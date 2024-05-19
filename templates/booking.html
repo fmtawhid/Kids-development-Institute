@@ -28,19 +28,24 @@
                             <h1 class="text-white m-0">Book A Seat</h1>
                         </div>
                         <div class="card-body rounded-bottom bg-primary p-5">
-                            <form>
+                            <form method='POST'>
+                                {% csrf_token %}
                                 <div class="form-group">
-                                    <input type="text" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
+                                    <input type="text" name='name' class="form-control border-0 p-4" placeholder="Your Name" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" />
+                                    <input type="email"  name='email' class="form-control border-0 p-4" placeholder="Your Email" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <select class="custom-select border-0 px-4" style="height: 47px;">
+                                    <input type="number"  name='number' class="form-control border-0 p-4" placeholder="Your Number" required="required" />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <select class="custom-select border-0 px-4"  name='course' style="height: 47px;">
                                         <option selected>Select A Class</option>
-                                        <option value="1">Class 1</option>
-                                        <option value="2">Class 1</option>
-                                        <option value="3">Class 1</option>
+                                        {% for course in course %}
+                                        <option  value="{{ course.id }}">{{ course.title }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div>

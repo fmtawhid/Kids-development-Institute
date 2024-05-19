@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from blog.models import *
 from course.models import*
+
+
 # Create your views here.
 def homePage(request):
     course = courseModel.objects.all()
@@ -19,6 +21,21 @@ def homePage(request):
     return render(request, 'index.html', context)
 
 def aboutPage(request):
-    return render(request, 'about.html')
+    team = teamModel.objects.all()
+
+    context = {
+        'team':team,
+    }
+    return render(request, 'about.html', context)
+
 def contactPage(request):
-    return render(request, 'contact.html')
+    if request.method == 'POST':
+        vname = request.POST['name']
+        vemail = request.POST['email']
+        vmessage = request.POST['message']
+
+        cont = contactModel(name=vname, email=vemail, message=vmessage)
+        cont.save()
+    
+    return render(request, 'contact.html',)
+

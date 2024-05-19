@@ -5,3 +5,4 @@ from .models import*
 admin.site.register(courseModel)
 admin.site.register(testimonialModel)
 admin.site.register(galleryModel)
+admin.site.register(bookingModel)

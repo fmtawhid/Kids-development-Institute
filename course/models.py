@@ -31,3 +31,14 @@ class galleryModel(models.Model):
 
     def __str__(self):
         return self.title
+    
+class bookingModel(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    mobile = models.IntegerField()
+    course = models.ForeignKey(courseModel, on_delete=models.CASCADE)
+    bookingDate = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
